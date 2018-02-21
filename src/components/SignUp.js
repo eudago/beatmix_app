@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import {
   Button,
   StyleSheet,
@@ -9,7 +8,6 @@ import {
   TextInput,
   Platform
 } from 'react-native';
-import { login } from '../actions/auth';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,74 +21,62 @@ const styles = StyleSheet.create({
   }
 });
 
-class LoginScreen extends React.Component {
+export default class SignUp extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      pass: '',
-      email: ''
-    };
-  }
-
-  login() {
-    this.props.dispatch(login('test@test.com', 'moto123'));
+    this.state = { seconds: 0 };
   }
 
   render() {
     const navigation = this.props.navigation;
+    let platformStyles;
+    if (Platform.OS === "ios") {
+      platformStyles = { borderColor: "rgba(136, 145, 181, 1)", color: "rgba(1, 23, 65, 1)" };
+    } else {
+      platformStyles = { color: "rgba(1, 23, 65, 1)" };
+    }
 
     return (
       <View style={styles.container}>
         <View style={{padding: 10}}>
           <TextInput
-            style={styles.input}
+            style={[styles.input, platformStyles]}
             multiline={false}
             placeholder={'User'}
             placeholderTextColor={"rgba(136, 145, 181, 1)"}
             underlineColorAndroid={"rgba(136, 145, 181, 1)"}
-            onChangeText={(email) => this.setState({email})}
-            value={this.state.email}
+            onEndEditing={event => console.log(event.nativeEvent.text)}
           />
         </View>
         <View style={{padding: 10}}>
           <TextInput
-          style={styles.input}
+            style={[styles.input, platformStyles]}
             multiline={false}
             secureTextEntry={true}
             placeholder={'Password'}
             placeholderTextColor={"rgba(136, 145, 181, 1)"}
             underlineColorAndroid={"rgba(136, 145, 181, 1)"}
-            onChangeText={(pass) => this.setState({pass})}
-            value={this.state.pass}
+            onEndEditing={event => console.log(event.nativeEvent.text)}
           />
         </View>
         <Button
-          onPress={() => {this.login()}}
-          title="Log in"
+          onPress={() => navigation.dispatch({ type: 'Login' })}
+          title="Sign Up"
         />
         <Button
-          onPress={() => navigation.dispatch({ type: 'SignUp' })}
-          title="Sign Up"
+          onPress={() => navigation.dispatch({ type: 'Login' })}
+          title="Log in"
         />
       </View>
     );
   }
 };
 
-LoginScreen.propTypes = {
+SignUp.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-LoginScreen.navigationOptions = {
-  title: 'Log In',
+SignUp.navigationOptions = {
+  title: 'Sign Up',
 };
-
-const mapDispatchToProps = (dispatch) => ({
-  dispatch,
-});
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(LoginScreen);
