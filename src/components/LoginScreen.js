@@ -34,7 +34,7 @@ class LoginScreen extends React.Component {
   }
 
   login() {
-    this.props.dispatch(login('test@test.com', 'moto123'));
+    this.props.dispatch(login(this.state.email, this.state.pass));
   }
 
   render() {
