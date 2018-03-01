@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import LoginScreen from '../components/LoginScreen';
+import SignUp from '../components/SignUp';
 import MainScreen from '../components/MainScreen';
 import { addListener } from '../utils/redux';
 
 export const AppNavigator = StackNavigator({
   Login: { screen: LoginScreen },
+  SignUp: { screen: SignUp },
   Main: { screen: MainScreen },
 });
 
