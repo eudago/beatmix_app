@@ -17,6 +17,7 @@ export const login = (email, password) => {
   return (dispatch) => {
     firebase.auth().signInWithEmailAndPassword(email, password).then((data) => {
       dispatch({ type: LOGIN, token: data.apiKey });
+      dispatch({ type: 'Login' });
     })
     //TODO: catch
   }
