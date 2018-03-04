@@ -5,7 +5,7 @@ import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import LoginScreen from '../components/LoginScreen';
 import SignUp from '../components/SignUp';
-import MainScreen from '../components/MainScreen';
+import MainScreen from '../components/MainScreen/MainScreen';
 import { addListener } from '../utils/redux';
 
 export const AppNavigator = StackNavigator({

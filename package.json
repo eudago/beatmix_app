@@ -23,6 +23,7 @@
     "firebase": "^4.10.0",
     "react": "16.0.0",
     "react-native": "0.50.3",
+    "react-native-tab-navigator": "^0.3.4",
     "react-navigation": "^1.0.3",
     "react-navigation-redux-helpers": "^1.0.1",
     "redux-thunk": "^2.2.0",
